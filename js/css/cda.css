@@ -1,0 +1,115 @@
+﻿.div-relative{
+	position:relative;
+	color:#000;
+	border:1px solid;
+	width:100%;
+	height:508px;
+	background-color: #000000;
+	margin: 0;
+    padding: 0;
+} 
+.div-cad1{ width:200px; height:200px; position: relative;}
+.div-cad2{ height:150px;}
+.div-cad3{ width:50px; height:50px; position:absolute; right:-20px; top:-20px;}
+.div-cad6{ width:60px; height:5px; position:absolute; right:0px; top:0px;}
+
+
+/* -----------------动态菜单开始----------------- */
+       .top-nav
+        {
+            font-size: 14px;
+            font-weight: bold;
+            list-style: none;
+        }
+        .top-nav li
+        {
+            float: left;
+            margin-right: 0px;
+        }
+        .top-nav li a
+        {
+            line-height: 29px;
+            text-decoration: none;
+            background: #3f240e;
+            color: #fff;
+            display: block;
+            width: 80px;
+            text-align: center;
+        }
+        .top-nav ul
+        {
+            list-style: none;
+            display: none;
+            padding: 0;
+            position: absolute;
+            height: 0;
+            overflow: hidden;
+        }
+ 
+        .top-nav li a:hover
+        {
+            background: url(./img/5461b50d0001e28000010034.jpg) 0 0 repeat-x;
+        }
+        .note
+        {
+	color: #3f240e;
+	display: block;
+	background: url(./img/5461b50d0001e28000010034.jpg) 0 0 repeat-x;
+	width: 60px;
+	height: 5px;
+        }
+        .corner
+        {
+	display: block;
+	height: 11px;
+	background: url(./img/5461b5620001410d00170011.jpg) 31px 0 no-repeat;
+	width: 40px;
+        }
+/* -----------------动态菜单结束----------------- */
+
+/* -----------------div 自适应高度 自动填充剩余高度 -----------------*/
+/* -----------------方法1（开始）-----------------*/
+/*调用方法1例子:
+Html：
+<div class="outer">
+    <div class="A"> 头部DIV </div>
+    <div class="B">下部DIV </div>
+</div>
+*/
+html,
+body { height: 100%; padding: 0; margin: 0; }
+.outer {
+	height: 100%;
+	box-sizing: border-box;
+	padding-top: 0px;
+}
+.A {
+	height: 100px;
+	background: #BBE8F2;
+	margin-top: -100px;
+}
+.B {
+	height: 100%;
+	background: #D9C666;
+}
+.C {
+	height: 30px;
+	background: #BBE8F2;
+	margin-top: -30px;
+	padding-top: 30px;
+}	
+.ds{height: 30px;}
+/* -----------------方法1（结束）-----------------*/
+/* -----------------方法2（开始）-----------------*/
+/*调用方法2例子:
+Html：<div id="div-ax" class="B">下部DIV </div>
+<div class="outer">
+    <div class="A">头部DIV</div>
+    <div class="B">下部DIV</div>
+</div>
+*/
+.outer1 { height: 100%; padding: 100px 0 0; box-sizing: border-box ; }
+.A1 { height: 100px; margin: -100px 0 0; background: #BBE8F2; }
+.B2 { height: 100%; background: #D9C666; }
+/* -----------------方法2（结束）-----------------*/
+/* -----------------div 自适应高度 自动填充剩余高度 -----------------*/
