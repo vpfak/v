@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>天源云-vip视频在线解析</title>
+	<script type="text/javascript" src="./js/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./js/vApi.js"></script>
+<!--    <script src="https://tfpak.github.io/a/js/Vue.min.js"></script>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/videoApi.js"></script>  -->
+    <link rel="stylesheet" href="./css/common.css">
+<link href="./js/css/cda.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.noteb {color: #996600;
+	display: block;
+	background: url(http://img.imooc.com/5461b50d0001e28000010034.jpg) 0 0 repeat-x;
+	width: 20px;
+	height: 20px;
+	position:absolute; 
+	right:0px;
+	top:0px;
+}
+.corner1 {	display: block;
+	height: 11px;
+	background: url(http://img.imooc.com/5461b5620001410d00170011.jpg) 31px 0 no-repeat;
+	width: 40px;
+}
+.note1 {	color: #3f240e;
+	display: block;
+	background: url(http://img.imooc.com/5461b50d0001e28000010034.jpg) 0 0 repeat-x;
+	width: 60px;
+	height: 5px;
+}
+-->
+</style>
+    <script type="text/javascript">
+        var t_over,t_leave;
+        window.onload = function () {
+            var Lis = document.getElementsByTagName("li");
+            //鼠标经过时的效果
+            for(var i=0;i<Lis.length;i++){
+                Lis[i].onmouseover = function () {
+                    var u = this.getElementsByTagName("ul")[0];
+                    if (u != undefined) {
+                        u.style.display="block";
+                        clearTimeout(t_leave);
+                        ChangeH(u.id,1);
+                    }
+                };
+                Lis[i].onmouseleave = function () {
+                    var u = this.getElementsByTagName("ul")[0];
+                    if (u != undefined) {
+                        clearTimeout(t_over);
+                        ChangeH(u.id,-1);
+                    }
+                };
+            }
+        };
+ 
+        function ChangeH(id, count) {
+            //	根据ID找到ulList，同时得到其高度
+            var ulList = document.getElementById(id);
+            var h = ulList.offsetHeight;
+ 
+            h += count;
+            if (count > 0) {
+                if (h <= 42) {
+                    //	将高度赋值给ulList，同时，不断调用本函数
+                    ulList.style.height = h + "px";
+                    t_over = setTimeout("ChangeH('" + id + "',1)", 10);
+                }
+                else {
+                    return;
+                }
+            }
+            else {
+                if (h > 0) {
+                    //	将高度赋值给ulList，同时，不断调用本函数
+                    ulList.style.height = h + "px";
+                    t_leave = setTimeout("ChangeH('" + id + "',-1)", 10);
+                }
+                else {
+                    ulList.style.display = "none";
+                    return;
+                }
+            }
+        }
+    </script>
+ 
+    <!--jQuery实现，有问题，只看思路-->
+    <!--<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>-->
+    <!--<script type="text/javascript">-->
+        <!--$(document).ready(function(){-->
+            <!--$(".top-nav li").mousemove(function(){-->
+                <!--$(this).find("ul").slideDown("1000");-->
+            <!--});-->
+            <!--$(".top-nav li").mouseleave(function(){-->
+                <!--$(this).find("ul").slideUp("slow");-->
+            <!--});-->
+        <!--})-->
+    <!--</script>-->
+	
+</head>
+
+<body>
+
+   <div id="app" class="outer">
+     <div id="div-cd" class="C">
+       <ul class="top-nav">
+         <li><a href="#"><span class="note1">视频网</span></a>
+             <ul id="mnuUa">
+               <span class="corner1"></span>
+               <li><a href="https://tfpak.github.io/w/">主页</a></li>
+               <li><a href="https://www.iqiyi.com/">爱奇艺</a></li>
+               <li><a href="https://v.qq.com/">腾讯视频</a> </li>
+               <li><a href="https://www.tudou.com/">土豆视频</a></li>
+               <li><a href="https://film.sohu.com/">搜狐视频</a></li>
+               <li><a href="https://www.youku.com/">优酷网</a></li>
+               <li><a href="https://www.bilibili.com/">bilibili</a></li>
+             </ul>
+         </li>
+       </ul>
+	   <div id="videos1" class="api-select">
+                    <input type="text" v-model.String="videoSrc" v-focus>
+       <div class="apiList"> 
+                    <span @click.stop="toggleList">接口{{ getNowApiName }}</span>
+                    <ul v-if="isShow">
+        <li v-for="(item,index) in api" @click="selectApi(index)">接口 {{ index+1 }}</li>
+      </ul>
+  </div>
+  <p class="tips">{{api.length}}个接口任君选择，解析不了请切换接口</p>
+</div>
+     </div>
+	 <DIV class="B"> <a id="divx" href="#"><span class="noteb"> 显</span></a><a id="divy" href="#"><span class="noteb"> 隐</span></a><iframe id="video" src="" frameborder="0" :width="width" :height="height"></iframe></DIV>
+
+   </div>
+</body>
+    <script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            api:api,
+            nowIndex:0,
+            videoSrc:"https://v.qq.com/x/cover/p8bvvfh82dqrqgq.html",
+            isShow:false,
+            width:"",
+            height:"",
+        },
+        methods: {
+            toggleList:function(){
+                if(this.isShow == false){
+                    this.isShow = true;
+                } else {
+                    this.isShow = false;
+                }
+            },
+            selectApi:function(index){
+                this.nowIndex = index;
+                this.toggleList();
+            },
+        },
+        computed: {
+            getNowApiName:function(){
+                return this.nowIndex +1 ;
+            },
+            getApi:function(){
+                return this.api[this.nowIndex] + this.videoSrc ;
+            }
+        },
+        watch:{
+            videoSrc:function(){
+                document.getElementById("video").src = this.getApi;
+            },
+            nowIndex:function(){
+                document.getElementById("video").src = this.getApi;
+            }
+        },
+        directives:{
+            focus:{
+                inserted:function(el){
+                    el.focus();
+                }
+            }
+        },
+       mounted:function(){
+            let that = this;
+            // 点击空白区域，列表消失
+            document.documentElement.addEventListener("click",function(){
+                that.isShow = false;
+            })
+            // 计算屏幕长宽
+           this.width = $(window).width()+ "px";
+            this.height = ($(window).height() +10)+ "px";
+            // 打开默认播放默认视频
+            document.getElementById("video").src = this.getApi;
+        }
+    })
+
+    </script>
+	<script type="text/javascript">
+$("#divx").click(function(){
+  $("#div-cd").fadeIn();
+});
+
+$("#divy").click(function(){
+  $("#div-cd").fadeOut();
+});
+</script>
+</body>
+	<script type="text/javascript">
+$("#divx").click(function(){
+  $("#divy").fadeIn();
+  $("#divx").fadeOut();
+});
+
+$("#divy").click(function(){
+  $("#divy").fadeOut();
+  $("#divx").fadeIn();
+});
+</script>
+</html>
