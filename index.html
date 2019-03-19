@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>ÌìÔ´ÔÆ-vipÊÓÆµÔÚÏß½âÎö</title>
+    <title>å¤©æºäº‘-vipè§†é¢‘åœ¨çº¿è§£æ</title>
 	<script type="text/javascript" src="./js/jquery/2.1.4/jquery.min.js"></script>
     <script src="./js/vApi.js"></script>
 <!--    <script src="https://tfpak.github.io/a/js/Vue.min.js"></script>
@@ -38,7 +38,7 @@
         var t_over,t_leave;
         window.onload = function () {
             var Lis = document.getElementsByTagName("li");
-            //Êó±ê¾­¹ıÊ±µÄĞ§¹û
+            //é¼ æ ‡ç»è¿‡æ—¶çš„æ•ˆæœ
             for(var i=0;i<Lis.length;i++){
                 Lis[i].onmouseover = function () {
                     var u = this.getElementsByTagName("ul")[0];
@@ -59,14 +59,14 @@
         };
  
         function ChangeH(id, count) {
-            //	¸ù¾İIDÕÒµ½ulList£¬Í¬Ê±µÃµ½Æä¸ß¶È
+            //	æ ¹æ®IDæ‰¾åˆ°ulListï¼ŒåŒæ—¶å¾—åˆ°å…¶é«˜åº¦
             var ulList = document.getElementById(id);
             var h = ulList.offsetHeight;
  
             h += count;
             if (count > 0) {
                 if (h <= 42) {
-                    //	½«¸ß¶È¸³Öµ¸øulList£¬Í¬Ê±£¬²»¶Ïµ÷ÓÃ±¾º¯Êı
+                    //	å°†é«˜åº¦èµ‹å€¼ç»™ulListï¼ŒåŒæ—¶ï¼Œä¸æ–­è°ƒç”¨æœ¬å‡½æ•°
                     ulList.style.height = h + "px";
                     t_over = setTimeout("ChangeH('" + id + "',1)", 10);
                 }
@@ -76,7 +76,7 @@
             }
             else {
                 if (h > 0) {
-                    //	½«¸ß¶È¸³Öµ¸øulList£¬Í¬Ê±£¬²»¶Ïµ÷ÓÃ±¾º¯Êı
+                    //	å°†é«˜åº¦èµ‹å€¼ç»™ulListï¼ŒåŒæ—¶ï¼Œä¸æ–­è°ƒç”¨æœ¬å‡½æ•°
                     ulList.style.height = h + "px";
                     t_leave = setTimeout("ChangeH('" + id + "',-1)", 10);
                 }
@@ -88,7 +88,7 @@
         }
     </script>
  
-    <!--jQueryÊµÏÖ£¬ÓĞÎÊÌâ£¬Ö»¿´Ë¼Â·-->
+    <!--jQueryå®ç°ï¼Œæœ‰é—®é¢˜ï¼Œåªçœ‹æ€è·¯-->
     <!--<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>-->
     <!--<script type="text/javascript">-->
         <!--$(document).ready(function(){-->
@@ -108,15 +108,15 @@
    <div id="app" class="outer">
      <div id="div-cd" class="C">
        <ul class="top-nav">
-         <li><a href="#"><span class="note1">ÊÓÆµÍø</span></a>
+         <li><a href="#"><span class="note1">è§†é¢‘ç½‘</span></a>
              <ul id="mnuUa">
                <span class="corner1"></span>
-               <li><a href="https://tfpak.github.io/w/">Ö÷Ò³</a></li>
-               <li><a href="https://www.iqiyi.com/">°®ÆæÒÕ</a></li>
-               <li><a href="https://v.qq.com/">ÌÚÑ¶ÊÓÆµ</a> </li>
-               <li><a href="https://www.tudou.com/">ÍÁ¶¹ÊÓÆµ</a></li>
-               <li><a href="https://film.sohu.com/">ËÑºüÊÓÆµ</a></li>
-               <li><a href="https://www.youku.com/">ÓÅ¿áÍø</a></li>
+               <li><a href="https://tfpak.github.io/w/">ä¸»é¡µ</a></li>
+               <li><a href="https://www.iqiyi.com/">çˆ±å¥‡è‰º</a></li>
+               <li><a href="https://v.qq.com/">è…¾è®¯è§†é¢‘</a> </li>
+               <li><a href="https://www.tudou.com/">åœŸè±†è§†é¢‘</a></li>
+               <li><a href="https://film.sohu.com/">æœç‹è§†é¢‘</a></li>
+               <li><a href="https://www.youku.com/">ä¼˜é…·ç½‘</a></li>
                <li><a href="https://www.bilibili.com/">bilibili</a></li>
              </ul>
          </li>
@@ -124,15 +124,15 @@
 	   <div id="videos1" class="api-select">
                     <input type="text" v-model.String="videoSrc" v-focus>
        <div class="apiList"> 
-                    <span @click.stop="toggleList">½Ó¿Ú{{ getNowApiName }}</span>
+                    <span @click.stop="toggleList">æ¥å£{{ getNowApiName }}</span>
                     <ul v-if="isShow">
-        <li v-for="(item,index) in api" @click="selectApi(index)">½Ó¿Ú {{ index+1 }}</li>
+        <li v-for="(item,index) in api" @click="selectApi(index)">æ¥å£ {{ index+1 }}</li>
       </ul>
   </div>
-  <p class="tips">{{api.length}}¸ö½Ó¿ÚÈÎ¾ıÑ¡Ôñ£¬½âÎö²»ÁËÇëÇĞ»»½Ó¿Ú</p>
+  <p class="tips">{{api.length}}ä¸ªæ¥å£ä»»å›é€‰æ‹©ï¼Œè§£æä¸äº†è¯·åˆ‡æ¢æ¥å£</p>
 </div>
      </div>
-	 <DIV class="B"> <a id="divx" href="#"><span class="noteb"> ÏÔ</span></a><a id="divy" href="#"><span class="noteb"> Òş</span></a><iframe id="video" src="" frameborder="0" :width="width" :height="height"></iframe></DIV>
+	 <DIV class="B"> <a id="divx" href="#"><span class="noteb"> æ˜¾</span></a><a id="divy" href="#"><span class="noteb"> éš</span></a><iframe id="video" src="" frameborder="0" :width="width" :height="height"></iframe></DIV>
 
    </div>
 </body>
@@ -186,14 +186,14 @@
         },
        mounted:function(){
             let that = this;
-            // µã»÷¿Õ°×ÇøÓò£¬ÁĞ±íÏûÊ§
+            // ç‚¹å‡»ç©ºç™½åŒºåŸŸï¼Œåˆ—è¡¨æ¶ˆå¤±
             document.documentElement.addEventListener("click",function(){
                 that.isShow = false;
             })
-            // ¼ÆËãÆÁÄ»³¤¿í
+            // è®¡ç®—å±å¹•é•¿å®½
            this.width = $(window).width()+ "px";
             this.height = ($(window).height() +10)+ "px";
-            // ´ò¿ªÄ¬ÈÏ²¥·ÅÄ¬ÈÏÊÓÆµ
+            // æ‰“å¼€é»˜è®¤æ’­æ”¾é»˜è®¤è§†é¢‘
             document.getElementById("video").src = this.getApi;
         }
     })
